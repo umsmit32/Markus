@@ -28,6 +28,17 @@
       <%= f.text_field :tokens_per_day, :id=>"tokens_per_day", :size => 5, :maxlength => 3 %>
     </p>
   </div>
+  
+  <div id="testing_framework_mark_used">
+    <p id="mark_used">
+      <%= label_tag :tokens_per_day, I18n.t("automated_tests.mark_used.mark_used_form") %>
+      <%= f.radio_button :test_mark_used, "best", :id => "best_mark_used" %>
+      <%= label_tag(:best_mark, I18n.t("automated_tests.mark_used.mark_used_best")) %>
+      <%= f.radio_button :test_mark_used, "latest", :id => "latest_mark_used" %>
+      <%= label_tag(:latest_mark, I18n.t("automated_tests.mark_used.mark_used_latest")) %>
+    </p>
+  </div>
+
 
   <fieldset>
     <legend><%= t("automated_tests.assignment_test_script_files") %></legend>

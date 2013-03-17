@@ -550,6 +550,8 @@ module AutomatedTestsHelper
     if num_tokens
       assignment.tokens_per_day = num_tokens
     end
+        
+    assignment.test_mark_used = params[:assignment][:test_mark_used]
 
     return assignment
   end

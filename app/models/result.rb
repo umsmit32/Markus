@@ -77,6 +77,8 @@ class Result < ActiveRecord::Base
   def get_total_test_script_marks
     total = 0
     
+    assignment = submission.assignment
+    
     #find the unique test scripts for this submission
     test_script_ids = TestScriptResult.select(:test_script_id).where(:submission_id => submission.id)#.uniq
     
@@ -88,8 +90,13 @@ class Result < ActiveRecord::Base
     
     #add the latest result from each of our test scripts 
     test_script_ids.each do |test_script_id|
-      test_result = TestScriptResult.where(:test_script_id => test_script_id).last
-      total = total + test_result.marks_earned
+      if assignment.test_mark_used == 'latest'
+        test_result = TestScriptResult.where(:test_script_id => test_script_id, :submission_id => submission.id).last
+        test_result = test_result.marks_earned
+      else
+        test_result = TestScriptResult.where(:test_script_id => test_script_id, :submission_id => submission.id).maximum(:marks_earned)
+      end
+      total = total + test_result
     end
     return total
   end

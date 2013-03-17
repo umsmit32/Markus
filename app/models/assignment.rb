@@ -6,6 +6,11 @@ class Assignment < ActiveRecord::Base
     :flexible => 'flexible',
     :rubric => 'rubric'
   }
+  
+  TEST_MARK_USED = {
+    :best => 'best',
+    :last => 'latest'
+  }
 
   has_many :automated_tests
   has_many :rubric_criteria,
@@ -62,6 +67,7 @@ class Assignment < ActiveRecord::Base
   validates_presence_of :submission_rule
 
   validates_presence_of :marking_scheme_type
+  validates_presence_of :test_mark_used
 
   # since allow_web_submits is a boolean, validates_presence_of does not work:
   # see the Rails API documentation for validates_presence_of (Model

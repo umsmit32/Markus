@@ -100,9 +100,17 @@ function toggle_automated_tests(is_testing_framework_enabled) {
   if(is_testing_framework_enabled) {
     jQuery('#tokens').removeClass('disable');
     jQuery('#tokens_per_day').attr('disabled', false);
+    
+    jQuery('#mark_used').removeClass('disable');
+    jQuery('#best_mark_used').attr('disabled', false);
+    jQuery('#latest_mark_used').attr('disabled', false);
   } else {
     jQuery('#tokens').addClass('disable');
     jQuery('#tokens_per_day').attr('disabled', true);
+    
+    jQuery('#mark_used').addClass('disable');
+    jQuery('#best_mark_used').attr('disabled', true);
+    jQuery('#latest_mark_used').attr('disabled', true);
   }
 }
 
